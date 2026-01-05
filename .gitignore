@@ -1,0 +1,26 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Settings & Session (Sensitive Data)
+settings.json
+session.json
+
+# Logs
+*.log
+
+# License
+license.key
+
+# Build/Dist
+dist/
+Protected_Bot/
+
+# Termux/System
+thumbs.db
+.DS_Store
+
+# Virtual Environment
+venv/
+env/
