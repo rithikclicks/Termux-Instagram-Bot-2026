@@ -102,9 +102,8 @@ class Dashboard:
         console.print("1. [bold cyan]Bot Liker[/bold cyan] [Toggle/Set/Source]")
         console.print("2. [bold cyan]Bot Commenter[/bold cyan] [Toggle/Set/Source/Comments]")
         console.print("3. [bold cyan]Story Watcher[/bold cyan] [Toggle/Set/Like]")
-        console.print("4. [bold magenta]Reels Booster[/bold magenta] [Toggle/Set/Link]")
-        console.print("5. [bold red]Start/Stop Bot[/bold red] (Use Ctrl+C to Stop Monitoring)")
-        console.print("6. [bold]Edit Credentials[/bold]")
+        console.print("4. [bold red]Start/Stop Bot[/bold red] (Use Ctrl+C to Stop Monitoring)")
+        console.print("5. [bold]Edit Credentials[/bold]")
         console.print("0. [bold]Exit[/bold]")
 
     def configure_service(self, service_key, pretty_name):
@@ -126,25 +125,6 @@ class Dashboard:
              self.config.update_service_config(service_key, "delay_min", min_d)
              self.config.update_service_config(service_key, "delay_max", max_d)
         
-        # Reels Booster Config
-        if service_key == "reels_booster":
-             console.print("\n[bold]Reels Booster Setup:[/bold]")
-             
-             # 1. Target Username (Source of Reels)
-             target_u = Prompt.ask("Enter Target Username (Source of Reels)", default=cfg.get("target_username", ""))
-             self.config.update_service_config(service_key, "target_username", target_u)
-             
-             # 2. Hashtags (5 for mentions)
-             current_tags = ",".join(cfg.get("hashtags", ["instagram", "viral", "explore", "trending", "love"]))
-             tags_str = Prompt.ask("Enter 5 Hashtags (comma separated)", default=current_tags)
-             new_tags = [t.strip() for t in tags_str.split(",") if t.strip()]
-             # Ensure at least 5? Or just use what is given. Validating count is good.
-             if len(new_tags) < 1: new_tags = ["instagram"]
-             self.config.update_service_config(service_key, "hashtags", new_tags)
-             
-             # 3. Delay
-             cons_delay = IntPrompt.ask("Cycle Delay (Minutes) [5-10 recommended]", default=cfg.get("cycle_delay_minutes", 10))
-             self.config.update_service_config(service_key, "cycle_delay_minutes", cons_delay)
 
         # Target Source (Liker/Commenter/Story)
         if service_key in ["timeline_liker", "timeline_commenter", "story_watcher"]:

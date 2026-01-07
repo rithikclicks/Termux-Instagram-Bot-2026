@@ -48,6 +48,12 @@ def main():
     console = Console()
     config = Config()
     
+    # --- CLEANUP LEGACY SERVICES ---
+    if "services" in config.settings and "reels_booster" in config.settings["services"]:
+        del config.settings["services"]["reels_booster"]
+        config.save_settings()
+    # -------------------------------
+    
     # Initialize UI
     dashboard = Dashboard(config)
     
@@ -67,7 +73,7 @@ def main():
             else:
                  console.print("\n[bold red]BOT IS STOPPED[/bold red]")
 
-            choice = Prompt.ask("\nSelect Option", choices=["1", "2", "3", "4", "5", "6", "0"], default="5")
+            choice = Prompt.ask("\nSelect Option", choices=["1", "2", "3", "4", "5", "0"], default="4")
             
             if choice == "1":
                 dashboard.configure_service("timeline_liker", "Bot Liker")
@@ -79,12 +85,9 @@ def main():
                 dashboard.configure_service("story_watcher", "Story Watcher")
                 
             elif choice == "4":
-                dashboard.configure_service("reels_booster", "Reels Booster")
-                
-            elif choice == "5":
                 # Start/Monitor Bot
                 if not config.get_credentials()[0]:
-                    console.print("[red]Please set credentials first (Option 6)![/red]")
+                    console.print("[red]Please set credentials first (Option 5)![/red]")
                     time.sleep(2)
                     continue
 
@@ -124,7 +127,7 @@ def main():
                     console.print("\n[yellow]Bot Stopped. Returning to menu...[/yellow]")
                     time.sleep(1)
             
-            elif choice == "6":
+            elif choice == "5":
                 u = Prompt.ask("Enter Username")
                 p = Prompt.ask("Enter Password", password=True)
                 config.set_credentials(u, p)
