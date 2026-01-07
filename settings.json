@@ -1,0 +1,26 @@
+{
+    "services": {
+        "timeline_liker": {
+            "enabled": true,
+            "delay_min": 30,
+            "delay_max": 60
+        },
+        "timeline_commenter": {
+            "enabled": false,
+            "delay_min": 60,
+            "delay_max": 120,
+            "comments": [
+                "Nice!",
+                "Great shot!",
+                "Love this!"
+            ]
+        },
+        "story_watcher": {
+            "enabled": true,
+            "delay_min": 20,
+            "delay_max": 40
+        }
+    },
+    "username": "qwertygirl969",
+    "password": "qwerty21"
+}

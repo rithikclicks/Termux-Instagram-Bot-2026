@@ -29,14 +29,6 @@ class Config:
                 "like_stories": True,
                 "source_type": "feed", # feed, hashtag, location, followers, following
                 "source_value": "none"
-            },
-            "reels_booster": {
-                "enabled": False,
-                "target_username": "",      # User to fetch random reels from
-                "hashtags": ["instagram", "viral", "explore", "trending", "love"], # 5 hashtags
-                "cycle_delay_minutes": 10,  # Delay between 2-story runs
-                "mentioned_users": [], 
-                "active_stories": []        # List of {"pk": 123, "time": 123456}
             }
         },
         "username": "",
